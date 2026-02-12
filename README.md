@@ -52,19 +52,6 @@ An intelligent AI-powered virtual shopping assistant with advanced features incl
   - Font Awesome for icons
   - Tesseract.js for text recognition
 
-## Project Structure
-
-```
-virtualshopai/
-├── index.html          # Main HTML file
-├── app.ts              # TypeScript source code
-├── app.js              # Compiled JavaScript
-├── styles.css          # Modern CSS styling
-├── tsconfig.json       # TypeScript configuration
-├── package.json        # Project metadata and dependencies
-├── README.md           # This file
-└── .gitignore          # Git ignore rules
-```
 
 ## Getting Started
 
@@ -75,47 +62,7 @@ virtualshopai/
   - Fetch API
   - ES2020+ JavaScript
 
-### Installation
-
-1. Clone or download the repository:
-```bash
-git clone https://github.com/yourusername/virtualshop-ai.git
-cd virtualshop-ai
-```
-
-2. Open with Python HTTP Server (recommended):
-```bash
-python -m http.server 8000
-# or for Python 3.x
-python3 -m http.server 8000
-```
-
-3. Open your browser and navigate to:
-```
-http://localhost:8000
-```
-
-### Direct Usage
-Simply open `index.html` in a modern web browser.
-
 ## Building from TypeScript
-
-If you want to compile the TypeScript source:
-
-1. Install TypeScript:
-```bash
-npm install -D typescript
-```
-
-2. Compile:
-```bash
-npm run build
-```
-
-Or directly:
-```bash
-tsc app.ts --target ES2020 --module ES2020 --lib ES2020,DOM
-```
 
 ## Configuration
 
@@ -168,28 +115,6 @@ const voiceConfig = {
 | IE 11   | ❌ No   | Not supported |
 
 ## Troubleshooting
-
-### Voice Recognition Not Working
-- Check if your browser supports Web Speech API
-- Ensure microphone permissions are granted
-- Try Chrome or Edge browser
-
-### AI Not Responding
-- Verify API key is valid
-- Check internet connection
-- Open browser console for error messages (F12)
-
-### OCR Not Working
-- Ensure image file is clear
-- Try JPEG or PNG format
-- Check browser console for errors
-
-## Performance Tips
-
-1. **Caching**: Browser caches external libraries (Font Awesome, Tesseract.js)
-2. **Lazy Loading**: Images load only when needed
-3. **Minification**: CSS uses compact syntax for better performance
-4. **Async Loading**: External libraries load asynchronously
 
 ## Security
 
