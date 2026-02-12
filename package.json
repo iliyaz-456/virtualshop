@@ -1,0 +1,35 @@
+{
+  "name": "virtualshop-ai",
+  "version": "2.0.0",
+  "description": "An intelligent AI-powered virtual shopping assistant with voice support, OCR scanning, and Gemini AI integration",
+  "author": "Your Name",
+  "license": "MIT",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server ./public -p 5000",
+    "build": "tsc",
+    "start": "tsc && echo 'Build complete! Open http://localhost:5000 in your browser'",
+    "compile-ts": "tsc",
+    "validate": "tsc --noEmit"
+  },
+  "keywords": [
+    "shopping",
+    "AI",
+    "voice-assistant",
+    "OCR",
+    "chat",
+    "gemini",
+    "typescript"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/virtualshop-ai"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

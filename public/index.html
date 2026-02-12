@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VirtualShop AI - Your smart shopping assistant powered by AI" />
+    <meta name="theme-color" content="#0a2342" />
+    <title>VirtualShop AI - Smart Shopping Assistant</title>
+    
+    <!-- External Libraries -->
+    <script src="https://kit.fontawesome.com/a2d9c58b04.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                <span>VirtualShop AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-target="landingSection" class="nav-link active">Home</a></li>
+                <li><a href="#" data-target="chatSection" class="nav-link">Chat</a></li>
+                <li><a href="#" data-target="searchSection" class="nav-link">Search</a></li>
+                <li><a href="#" data-target="ocrSection" class="nav-link">OCR</a></li>
+                <li><a href="#" data-target="cartSection" class="nav-link">Cart</a></li>
+                <li><a href="#" data-target="paymentSection" class="nav-link">Payment</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Section -->
+    <section id="landingSection" class="section hero-section active">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Welcome to <span class="highlight">VirtualShop AI</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Your intelligent shopping companion
+                </p>
+                <p class="hero-description">
+                    Shop smarter with AI-powered chat, OCR scanning, and voice assistance
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showSection('chatSection')">
+                        <i class="fas fa-comments"></i> Start Chatting
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSection('searchSection')">
+                        <i class="fas fa-search"></i> Browse Products
+                    </button>
+                </div>
+            </div>
+            <div class="hero-features">
+                <div class="feature-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Chat</h3>
+                    <p>Get instant shopping advice from our AI assistant</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Voice Control</h3>
+                    <p>Hands-free shopping with voice commands</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>OCR Scanner</h3>
+                    <p>Scan product labels and extract text instantly</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Secure Payment</h3>
+                    <p>Safe and encrypted payment processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chatSection" class="section">
+        <div class="container">
+            <div class="chat-wrapper">
+                <div class="chat-header">
+                    <div class="header-content">
+                        <h2><i class="fas fa-comments"></i> AI Shopping Assistant</h2>
+                        <p>Ask anything about products and shopping</p>
+                    </div>
+                    <button id="stopBtn" class="btn-icon" title="Clear Chat">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+
+                <div class="chat-body" id="chatBody">
+                    <div class="message-container" id="messageContainer">
+                        <div class="bot-message welcome-message">
+                            <p>👋 Hello! I'm your AI shopping assistant. Ask me anything about products, pricing, recommendations, or anything else you need help with!</p>
+                        </div>
+                    </div>
+                    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <p>AI is thinking...</p>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <div class="input-wrapper">
+                        <button id="micBtn" class="btn-icon mic-btn" title="Voice Input">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            class="chat-input" 
+                            placeholder="Type your question or speak..."
+                            autocomplete="off"
+                        />
+                        <button id="sendBtn" class="btn-icon send-btn" title="Send Message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <small class="input-hint">Press Enter or click send to submit</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="searchSection" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-search"></i> Find Products</h2>
+                <p>Search for products using voice or text</p>
+            </div>
+
+            <div class="search-wrapper">
+                <div class="search-input-group">
+                    <button id="searchMicBtn" class="btn-icon" title="Voice Search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search products by name or keyword..."
+                        autocomplete="off"
+                    />
+                    <button id="searchBtn" class="btn btn-primary" title="Search Products">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <div id="searchResults" class="search-results">
+                <div class="empty-state">
+                    <i class="fas fa-box-open"></i>
+                    <p>Start searching for products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OCR Section -->
+    <section id="ocrSection" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-camera"></i> OCR Text Scanner</h2>
+                <p>Upload an image to extract text from product labels</p>
+            </div>
+
+            <div class="ocr-wrapper">
+                <div class="file-upload-area" id="fileUploadWrapper">
+                    <input type="file" id="ocrFile" accept="image/*" style="display: none;" />
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Image</h3>
+                        <p>Click to select or drag an image</p>
+                        <span class="upload-formats">JPG, PNG, BMP (Max 5MB)</span>
+                    </div>
+                    <img id="imagePreview" class="image-preview" alt="Preview" />
+                </div>
+
+                <div class="ocr-progress-container">
+                    <div id="ocrProgress" class="ocr-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div id="ocrProgressBar" class="progress-fill"></div>
+                        </div>
+                        <span class="progress-text">Processing...</span>
+                    </div>
+                </div>
+
+                <button id="doOCR" class="btn btn-primary" disabled>
+                    <i class="fas fa-magic"></i> Extract Text
+                </button>
+
+                <div id="ocrResult" class="ocr-result"></div>
+
+                <div class="ocr-actions" id="ocrActions" style="display: none;">
+                    <button id="copyTextBtn" class="btn btn-secondary">
+                        <i class="fas fa-copy"></i> Copy Text
+                    </button>
+                    <button id="downloadTextBtn" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button id="clearTextBtn" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cartSection" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-shopping-cart"></i> Shopping Cart</h2>
+                <p>Review items before checkout</p>
+            </div>
+
+            <div class="cart-wrapper">
+                <div id="cartItems" class="cart-items">
+                    <div class="empty-cart">
+                        <i class="fas fa-inbox"></i>
+                        <p>Your cart is empty</p>
+                        <button class="btn btn-primary" onclick="showSection('searchSection')">
+                            Continue Shopping
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping:</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Tax:</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button id="checkoutBtn" class="btn btn-primary btn-lg">
+                        <i class="fas fa-lock"></i> Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="paymentSection" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-credit-card"></i> Secure Payment</h2>
+                <p>Complete your purchase safely</p>
+            </div>
+
+            <div class="payment-wrapper">
+                <form id="paymentForm" class="payment-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required />
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Billing Address</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address">Street Address</label>
+                                <input type="text" id="address" name="address" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Province</label>
+                                <input type="text" id="state" name="state" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">ZIP/Postal Code</label>
+                                <input type="text" id="zip" name="zip" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Card Details</h3>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="termsCheckbox" name="terms" required />
+                        <label for="termsCheckbox">I agree to the terms and conditions</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-check-circle"></i> Complete Payment
+                    </button>
+                </form>
+
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="paymentSummary" class="payment-summary">
+                        <div class="summary-item">
+                            <span>Total Amount:</span>
+                            <span id="paymentTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="dist/app.js" type="text/javascript"></script>
+</body>
+</html>
