@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.html",
   "scripts": {
-    "dev": "http-server ./public -p 5001",
+    "dev": "http-server ./public -p 5002",
     "build": "tsc",
     "start": "tsc && echo 'Build complete! Open http://localhost:5000 in your browser'",
     "compile-ts": "tsc",
