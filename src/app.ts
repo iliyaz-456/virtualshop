@@ -81,7 +81,7 @@ interface WindowWithSpeechRecognition extends Window {
 }
 
 // Constants
-const API_KEY = 'AIzaSyAzr65vxkOF_TmzS1fEbJOZn0MNBhcoA-U';
+const API_KEY = 'YOUR_GEMINI_API_KEY';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 // Voice Configuration
@@ -232,6 +232,11 @@ async function sendMessage(): Promise<void> {
   const userText = messageInput.value.trim();
   
   if (!userText) {
+    return;
+  }
+
+  if (!API_KEY || API_KEY === 'YOUR_GEMINI_API_KEY') {
+    addMessage('<span class="error-message">Error: Missing Gemini API key. Add your key before sending messages.</span>', true);
     return;
   }
 
